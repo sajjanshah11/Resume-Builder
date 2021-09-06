@@ -1,24 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/login";
+import Signup from "./components/signup";
+import Home from "./components/home"
+import { auth, firestore } from "./firebase"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
-function App() {
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { userCreator } from "./redux/actions/userActions";
+
+
+
+let App = () => {
+
+  let dispatch = useDispatch();
+
+  let state = useSelector((state) => state)
+  console.log(state);
+
+  useEffect(() => {
+
+    let unsub = auth.onAuthStateChanged(async (user) => {
+
+      dispatch(userCreator(user));
+
+      if (user) {
+
+
+        let { email, uid } = user;
+
+        let docRef = firestore.collection("users").doc(uid);
+
+        // console.log(docRef.get);
+
+        let doc = await docRef.get();
+
+        if (!doc.exists) {
+          docRef.set({
+            email,
+          })
+        }
+
+      }
+    })
+
+    return () => {
+      unsub();
+    }
+
+  }, [dispatch])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/login" >
+            <Login />
+          </Route>
+
+          <Route path="/signup" >
+            <Signup />
+          </ Route>
+
+          <Route path="/" >
+            <Home />
+          </ Route>
+
+        </Switch>
+
+      </div >
+    </Router>
   );
 }
 
