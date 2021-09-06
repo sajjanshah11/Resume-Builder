@@ -19,7 +19,8 @@ let App = () => {
   let dispatch = useDispatch();
 
   let state = useSelector((state) => state)
-  console.log(state);
+  
+  console.log(state)
 
   useEffect(() => {
 
@@ -51,7 +52,7 @@ let App = () => {
       unsub();
     }
 
-  }, [dispatch])
+  }, [])
 
   return (
     <Router>

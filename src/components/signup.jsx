@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 import { auth } from "../firebase"
 
@@ -7,7 +8,8 @@ let Signup = () => {
     let [password, setPassword] = useState("");
     let [confirmPassword, setConfirmPassword] = useState("");
     let [email, setEmail] = useState("")
-
+    
+    let state = useSelector(state => state)
     return (
         <>
             <div className="row">
@@ -65,6 +67,8 @@ let Signup = () => {
                                 e.preventDefault();
                                 if(password === confirmPassword){
                                     auth.createUserWithEmailAndPassword(email,password);
+                console.log(state)
+
                                 }
                             }}
                             >Signup</button>

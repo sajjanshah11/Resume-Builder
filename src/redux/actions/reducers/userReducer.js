@@ -1,6 +1,6 @@
 
-let userReducer = (state = null ,action)=>{
-    switch(action.Type) {
+let userReducer = (state = {} ,action)=>{
+    switch(action.type) {
         case "SET_USER":
             return action.payload
 
