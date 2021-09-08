@@ -1,0 +1,33 @@
+.logout-btn{
+    position: fixed;
+    right: 2rem;
+    bottom: 3rem;
+    border: none;
+    outline: none;
+    width: 5rem;
+    height: 3rem;
+    /* border-radius: 56%; */
+    color: white;
+}
+
+.template-container{
+    margin: 2rem;
+    height: 30rem;
+    width: 65rem;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.template {
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid; */
+    box-shadow: 5px 10px 18px rgb(139, 75, 75);
+
+}
+
+.template img{
+    height: 100%;
+    width: 100%;
+}

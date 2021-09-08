@@ -1,0 +1,11 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.personal-data-container{
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid;
+}

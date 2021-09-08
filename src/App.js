@@ -11,6 +11,7 @@ import {
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { userCreator } from "./redux/actions/userActions";
+import PersonalData from "./components/personalData";
 
 
 
@@ -18,9 +19,9 @@ let App = () => {
 
   let dispatch = useDispatch();
 
-  let state = useSelector((state) => state)
+  // let state = useSelector((state) => state)
   
-  console.log(state)
+  // console.log(state)
 
   useEffect(() => {
 
@@ -58,6 +59,9 @@ let App = () => {
     <Router>
       <div className="App">
         <Switch>
+          <Route path = "/personal">
+            <PersonalData/>
+          </Route>
           <Route path="/login" >
             <Login />
           </Route>
